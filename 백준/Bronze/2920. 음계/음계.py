@@ -1,13 +1,9 @@
 pitch = list(map(int, input().split()))
-flag = 0
-for i in range(7):
-    if pitch[i+1] - pitch[i] == 1:
-        flag += 1
-    elif pitch[i+1] - pitch[i] == -1:
-        flag -= 1
-if flag == 7:
+asc = [1,2,3,4,5,6,7,8]
+des = [8,7,6,5,4,3,2,1]
+if pitch == asc:
     print("ascending")
-elif flag == -7:
+elif pitch == des:
     print("descending")
 else:
     print("mixed")

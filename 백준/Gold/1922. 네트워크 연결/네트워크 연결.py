@@ -7,15 +7,12 @@ def find(a):
         return p[a]
 
 def union(x,y):
-    x_root = find(x)
-    y_root = find(y)
-    if r[x_root] > r[y_root]:
-        p[y_root] = x_root
-    elif r[x_root] < r[y_root]:
-        p[x_root] = y_root
+    if r[x] > r[y]:
+        p[y] = p[x]
+        r[x] += r[y]
     else:
-        p[y_root] = x_root
-        r[x_root] += 1
+        p[x] = p[y]
+        r[y] += r[x]
 
 n = int(sys.stdin.readline().strip())
 m = int(sys.stdin.readline().strip())
@@ -26,15 +23,17 @@ for _ in range(m):
     _edges.append(edge)
 
 edges = sorted(_edges, key = lambda x:x[2])
-p, r = [i for i in range(n+1)], [1]*(n+1)
+p, r = [i for i in range(n+2)], [1]*(n+1)
 answer, flag = 0,0
 while edges:
     s,d,w = edges.pop(0)
-    if find(s) != find(d):
-        union(s,d)
+    x = find(s)
+    y = find(d)
+    if x != y:
+        union(x,y)
         answer += w
         flag += 1
 
-    if flag == (n-1):
+    if flag == n-1:
         break
 print(answer)

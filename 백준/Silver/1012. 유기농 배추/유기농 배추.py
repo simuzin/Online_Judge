@@ -23,7 +23,7 @@ for _ in range(t):
                 queue.append([i,j])
                 # 섬 만들기
                 while len(queue) > 0:
-                    temp = queue.pop(0)
+                    temp = queue.pop()
                     # 이어진 땅 찾기
                     for k in range(4):
                         nextY = temp[0]+dirY[k]

@@ -1,10 +1,11 @@
 import sys
-k = int(sys.stdin.readline())
-temp = []
+
+k = int(sys.stdin.readline().strip())
+stack = []
 for _ in range(k):
-    n = int(sys.stdin.readline())
-    if n == 0:
-        temp.pop()
+    money = int(sys.stdin.readline().strip())
+    if money:
+        stack.append(money)
     else:
-        temp.append(n)
-print(sum(temp))
+        stack.pop()
+print(sum(stack))

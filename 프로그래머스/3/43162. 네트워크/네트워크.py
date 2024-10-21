@@ -4,18 +4,20 @@ def solution(n, computers):
     answer = 0
     visited_bfs = [False] * n
     
-    for i in range(n):
-        # BFS 구현하기 (그래프)
-        if not visited_bfs[i]:
-            queue = deque([i]) 
-            visited_bfs[i] = True
-            answer += 1
+    def BFS (visited_bfs, computers, start_node):
+            queue = deque([start_node]) 
+            visited_bfs[start_node] = True
             while queue:
                 node = queue.popleft()
-                for j in range(n):
-                    if computers[node][j] == 1 and not visited_bfs[j]:
-                        queue.append(j)
-                        visited_bfs[j] = True
+                for i in range(n):
+                    if computers[node][i] == 1 and not visited_bfs[i]:
+                        queue.append(i)
+                        visited_bfs[i] = True
+                        
+    for i in range(n):
+        if not visited_bfs[i]:
+            BFS(visited_bfs, computers, i)
+            answer += 1
     return answer
         
         

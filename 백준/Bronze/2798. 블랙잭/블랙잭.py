@@ -11,7 +11,7 @@ def recur(start, depth, sum):
         if sum <= M:
             result.append(sum)
         return
-    for i in range(start, len(cards)):
+    for i in range(start, N):
         recur(i+1, depth+1, sum + cards[i])
 
 recur(0,0,0)

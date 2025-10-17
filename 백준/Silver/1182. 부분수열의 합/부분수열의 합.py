@@ -11,18 +11,14 @@ def perm(start, depth, stop):
         perm_result.append(temp.copy())
         return
     for i in range(start, N):
-        if visited[i] == False:
-            visited[i] = True
-            temp.append(nums[i])
-            perm(i+1, depth+1, stop)
-            temp.pop()
-            visited[i] = False
+        temp.append(nums[i])
+        perm(i+1, depth+1, stop)
+        temp.pop()
 
 # 부분순열의 합 & S값과 비교
 for i in range(1, N+1):
     temp = []
     perm_result = []
-    visited = [False] * N
     perm(0,0,i)
     # print(perm_result)
     for j in range(len(perm_result)):
